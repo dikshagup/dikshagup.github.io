@@ -668,3 +668,15 @@ $nav-expand-from: 768px;
   font-size: 0.82em;
   opacity: 0.85;
 }
+
+// Opt a single link out of the pink paper-reference treatment (e.g. a method
+// name that happens to link to arXiv). Use <a class="muted-link" href="...">.
+.article-project .article-style a.muted-link {
+  color: inherit;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+
+  &:hover {
+    color: inherit;
+    border-bottom-color: currentColor;
+  }
+}

@@ -31,7 +31,7 @@ A large portion of safety and alignment research has focused on closed frontier 
 
 Yet, open-weight safety remains an unsolved problem. Every open-weight model has been successfully "abliterated" through refusal vector ablation, yielding models that comply on dangerous prompts, and unlearning of sensitive information remains extremely brittle to adversarial attacks. 
 
-This project was my first attempt to work on this problem (<a class="accent-link" href="https://www.lesswrong.com/posts/shkMAc9Logd8xPQvB/red-teaming-llm-unlearning-lunar-s-forgotten-knowledge-is">write-up</a>). I red-teamed [LUNAR](https://arxiv.org/abs/2502.07218), a state-of-the-art unlearning method. With the kind of access any open-weight attacker has, I could recover the "forgotten" knowledge in two ways:
+This project was my first attempt to work on this problem (<a class="accent-link" href="https://www.lesswrong.com/posts/shkMAc9Logd8xPQvB/red-teaming-llm-unlearning-lunar-s-forgotten-knowledge-is">write-up</a>). I red-teamed <a class="muted-link" href="https://arxiv.org/abs/2502.07218">LUNAR</a>, a state-of-the-art unlearning method. With the kind of access any open-weight attacker has, I could recover the "forgotten" knowledge in two ways:
 - using GRPO fine-tuning, the model learned to route around LUNAR's modifications
 - by steering activations along a difference-in-means direction
 
