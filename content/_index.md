@@ -93,7 +93,7 @@ sections:
   - block: collection
     id: publications
     content:
-      title: Blogposts
+      title: Recent Blogposts
       count: 0
       filters:
         folders:
