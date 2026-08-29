@@ -1,50 +1,86 @@
-# [Hugo Academic Theme](https://github.com/wowchemy/starter-hugo-academic)
+# dikshagup.github.io
 
-[![Screenshot](./preview.png)](https://wowchemy.com/hugo-themes/)
+Source for my personal academic website: <https://dikshagup.github.io>
 
-The Hugo **Academic Resumé Template** empowers you to easily create your job-winning online resumé, showcase your academic publications, and create online courses or knowledge bases to grow your audience.
+The site is a static site generated with [Hugo](https://gohugo.io) using the
+[Wowchemy](https://github.com/wowchemy/wowchemy-hugo-themes) academic theme, pulled in as a
+Hugo Module (see `config/_default/config.yaml`). There is nothing to vendor or check out —
+`hugo` fetches the theme itself on first build.
 
-[![Get Started](https://img.shields.io/badge/-Get%20started-ff4655?style=for-the-badge)](https://wowchemy.com/hugo-themes/)
-[![Discord](https://img.shields.io/discord/722225264733716590?style=for-the-badge)](https://discord.com/channels/722225264733716590/742892432458252370/742895548159492138)  
-[![Twitter Follow](https://img.shields.io/twitter/follow/wowchemy?label=Follow%20on%20Twitter)](https://twitter.com/wowchemy)
+## Preview locally
 
-️**Trusted by 250,000+ researchers, educators, and students.** Highly customizable via the integrated **no-code, widget-based Wowchemy page builder**, making every site truly personalized ⭐⭐⭐⭐⭐
+Always render locally and check the result in a browser before pushing — pushing to `main`
+deploys straight to the live site.
 
-Easily write technical content with plain text Markdown, LaTeX math, diagrams, RMarkdown, or Jupyter, and import publications from BibTeX.
+```bash
+./serve.sh
+```
 
-[Check out the latest demo](https://academic-demo.netlify.app/) of what you'll get in less than 10 minutes, or [get inspired by our academics and research groups](https://wowchemy.com/creators/).
+Then open <http://localhost:1313>. The server live-reloads as you edit.
 
-The integrated [**Wowchemy**](https://wowchemy.com) website builder and CMS makes it easy to create a beautiful website for free. Edit your site in the CMS (or your favorite editor), generate it with [Hugo](https://github.com/gohugoio/hugo), and deploy with GitHub or Netlify. Customize anything on your site with widgets, light/dark themes, and language packs.
+The script bootstraps a pinned, project-local Hugo into `.tools/` (gitignored) on first run, so
+it matches the version CI builds with. It needs Go on your `PATH` for Hugo Modules:
 
-- 👉 [**Get Started**](https://wowchemy.com/hugo-themes/)
-- 📚 [View the **documentation**](https://wowchemy.com/docs/)
-- 💬 [Chat with the **Wowchemy research community**](https://discord.gg/z8wNYzb) or [**Hugo community**](https://discourse.gohugo.io)
-- 🐦 Twitter: [@wowchemy](https://twitter.com/wowchemy) [@GeorgeCushen](https://twitter.com/GeorgeCushen) [#MadeWithWowchemy](https://twitter.com/search?q=%23MadeWithWowchemy&src=typed_query)
-- ⬇️ **Automatically import your publications from BibTeX** with the [Hugo Academic CLI](https://github.com/wowchemy/hugo-academic-cli)
-- 💡 [Suggest an improvement](https://github.com/wowchemy/wowchemy-hugo-themes/issues)
-- ⬆️ **Updating?** View the [Update Guide](https://wowchemy.com/docs/hugo-tutorials/update/) and [Release Notes](https://github.com/wowchemy/wowchemy-hugo-themes/releases)
+```bash
+brew install go
+```
 
-## We ask you, humbly, to support this open source movement
+If you rename or delete a folder under `content/`, **restart the server**. Hugo's
+live-reload keeps the old page in memory, so you will see both the old and the new
+version until you stop it with Ctrl+C and run `./serve.sh` again. Edits to existing
+files reload fine; it is only added/removed/renamed directories that need this.
 
-Today we ask you to defend the open source independence of the Wowchemy website builder and themes 🐧
+Other commands:
 
-We're an open source movement that depends on your support to stay online and thriving, but 99.9% of our creators don't give; they simply look the other way.
+```bash
+./serve.sh build     # one-off production build into ./public — run this before pushing
+./serve.sh drafts    # preview including drafts and future-dated content
+```
 
-### [❤️ Click here to become a GitHub Sponsor, unlocking awesome perks such as _exclusive academic templates and widgets_](https://github.com/sponsors/gcushen)
+## Editing content
 
-<p align="center"><a href="https://wowchemy.com/templates/" target="_blank" rel="noopener"><img src="https://wowchemy.com/uploads/readmes/academic_logo_200px.png" alt="Hugo Academic Theme for Wowchemy Website Builder"></a></p>
+Everything below is the full set of files you touch. Homepage section order is the
+order of the `sections:` list in `content/_index.md`.
 
-## Demo image credits
+| What you want to change | File |
+| --- | --- |
+| Bio text, role, affiliations, social links, status emoji | `content/authors/admin/_index.md` (body text is below the closing `---` on line 81) |
+| **Projects** — one folder per project | `content/project/<slug>/index.md` |
+| Which papers show under a project | the `projects:` list in each publication's front matter, not the project page |
+| **Publications** — one folder per paper | `content/publication/<slug>/index.md` |
+| Which publication group a paper lands in | `publication_types:` in its front matter — `'2'` peer-reviewed, `'3'` preprint, `'1'` conference abstract |
+| **Blogposts** — one folder per post | `content/post/<slug>/index.md` |
+| **Talks** — plain markdown list | `content/_index.md`, `talks` block (~line 145) |
+| **Teaching & organizing** — plain markdown list | `content/_index.md`, `teaching` block (~line 167) |
+| Section titles, order, add/remove a section | `content/_index.md`, the `sections:` list |
+| Nav bar tabs | `config/_default/menus.yaml` |
+| Site title, base URL, theme modules | `config/_default/config.yaml` |
+| SEO description, analytics, theme, features | `config/_default/params.yaml` |
+| Colours | `data/themes/my_theme_day.toml` |
+| Custom CSS (incl. the nav breakpoint) | `assets/scss/custom.scss` |
+| Wording of theme labels, e.g. "Conference abstract" | `i18n/en.yaml` |
+| PDFs, CV, and other files served as-is | `static/uploads/` |
 
-- [Open book](https://unsplash.com/photos/J4kK8b9Fgj8)
-- [Course](https://unsplash.com/photos/JKUTrJ4vK00)
+### Adding a new item
 
-## Latest news
+Copy an existing sibling folder and edit it — the front matter is the template.
+A publication or post folder can also hold its own `featured.jpg`, `cite.bib`, and
+PDF; the theme picks those up automatically and shows the matching buttons. Fields
+you leave empty simply do not render.
 
-<!--START_SECTION:news-->
-* [Easily make an academic CV website to get more cites and grow your audience 🚀](https:&#x2F;&#x2F;wowchemy.com&#x2F;blog&#x2F;easily-make-academic-website&#x2F;)
-* [What&#39;s new in v5.2?](https:&#x2F;&#x2F;wowchemy.com&#x2F;blog&#x2F;whats-new-in-v5.2&#x2F;)
-* [What&#39;s new in v5.1?](https:&#x2F;&#x2F;wowchemy.com&#x2F;blog&#x2F;whats-new-in-v5.1&#x2F;)
-* [Version 5.0 (February 2021)](https:&#x2F;&#x2F;wowchemy.com&#x2F;blog&#x2F;version-5.0-february-2021&#x2F;)
-* [Version 5.0 Beta 3 (February 2021)](https:&#x2F;&#x2F;wowchemy.com&#x2F;blog&#x2F;version-5.0-beta-3-february-2021&#x2F;)
-<!--END_SECTION:news-->
+### Placeholders still to replace
+
+- `content/project/*/index.md` — all four project names, summaries and dates
+- `content/post/placeholder-post-1`, `-2` — delete these folders once you have real posts
+- the `teaching` block in `content/_index.md` — all six rows
+- the `projects:` field in each publication — check the project assignments are right
+
+## Deploying
+
+Pushing to `main` triggers `.github/workflows/hugo.yaml`, which builds with Hugo and publishes to
+GitHub Pages. The Hugo version is pinned in that workflow — keep it in sync with `serve.sh`.
+
+## Licence
+
+Site content © Diksha Gupta. The underlying Wowchemy theme code is MIT licensed — see
+`LICENSE.md`.

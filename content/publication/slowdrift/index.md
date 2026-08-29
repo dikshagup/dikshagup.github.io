@@ -6,8 +6,7 @@ authors:
 author_notes:
 
 date: "2022-05-01T00:00:00Z"
-doi: "10.51628/001c.35908
-"
+doi: "10.51628/001c.35908"
 
 # Schedule page publish date (NOT publication's date).
 publishDate: 
@@ -55,8 +54,8 @@ image:
 #   Simply enter your project's folder or file name without extension.
 #   E.g. `internal-project` references `content/project/internal-project/index.md`.
 #   Otherwise, set `projects: []`.
-projects: []
-
+projects:
+  - sequential-decision-making
 # Slides (optional).
 #   Associate this publication with Markdown slides.
 #   Simply enter your slide deck's filename without extension.

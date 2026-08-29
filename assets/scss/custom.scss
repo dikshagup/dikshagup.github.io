@@ -1,0 +1,670 @@
+// Custom styles for dikshagup.github.io
+// Imported by the theme's `main.scss` (`@import "custom"`).
+
+// ---------------------------------------------------------------------------
+// Inline nav tabs from 768px up
+//
+// The theme renders the navbar as `navbar-expand-lg`, so Bootstrap hides the
+// links behind the hamburger below 992px. These rules reproduce
+// `navbar-expand-md` for `#navbar-main`, and undo the theme's mobile-drawer
+// styling in the 768px–991.98px band where it would otherwise still apply.
+//
+// To move the threshold, change 768px below (Bootstrap breakpoints:
+// sm 576px, md 768px, lg 992px). Below the threshold the hamburger returns,
+// which is what you want on a phone — six tabs will not fit on a 375px screen.
+// ---------------------------------------------------------------------------
+
+$nav-expand-from: 768px;
+
+@media (min-width: $nav-expand-from) {
+  #navbar-main {
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+
+    .navbar-toggler {
+      display: none;
+    }
+
+    .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+    }
+
+    .navbar-nav {
+      flex-direction: row;
+
+      .dropdown-menu {
+        position: absolute;
+      }
+    }
+  }
+}
+
+@media (min-width: $nav-expand-from) and (max-width: 991.98px) {
+  #navbar-main {
+    .navbar-collapse {
+      position: static;
+      top: auto;
+      left: auto;
+      width: auto;
+      z-index: auto !important;
+      background-color: transparent !important;
+      text-align: left !important;
+    }
+
+    .main-menu-item .nav-item {
+      padding: 0 !important;
+    }
+
+    .main-menu-item .nav-item .nav-link {
+      padding: 0.5rem !important;
+    }
+  }
+
+  .navbar-brand-mobile-wrapper {
+    position: static;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Two-column date lists (Talks, Teaching & Organizing)
+//
+// Row layout is: [ right-aligned date ][ .row-body ]. Everything after the
+// date -- description text and the tag row -- lives inside .row-body, so a
+// long description wraps within the second column instead of being pushed
+// onto its own full-width line (which is what a bare flex-wrap row does).
+// ---------------------------------------------------------------------------
+
+#talks, #teaching {
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 0.55rem;
+    line-height: 1.45;
+  }
+
+  li > strong:first-child {
+    flex: 0 0 5.5rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9em;
+  }
+
+  .row-body {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  @media (max-width: 575.98px) {
+    li {
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    li > strong:first-child {
+      display: block;
+      text-align: left;
+    }
+  }
+}
+
+// Tags sit as one group on their own line beneath the description, aligned to
+// it (they live inside `.row-body`, the row's second column). Inline flow was
+// tried first and read as ragged: whether a pill stayed on the description
+// line or wrapped depended purely on how long that description happened to be,
+// so the tag column zig-zagged down the page. A dedicated line gives every row
+// the same rhythm.
+.tag-row {
+  display: block;
+  margin-top: 0.25rem;
+  line-height: 1;
+
+  // No leading gap on the first pill, so the group starts flush with the text.
+  > :first-child {
+    margin-left: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Project tags
+//
+// Small pills that key a talk (or any markdown list item) to one of the
+// project pages. Talks live as a markdown list rather than `content/event/`
+// pages, so they cannot use the `projects:` front-matter mechanism that
+// publications and posts use -- these are hand-applied links instead.
+//
+// Usage inside a markdown block:
+//   <a class="proj-tag t-circuits" href="/project/decision-circuits/">neural circuits</a>
+// ---------------------------------------------------------------------------
+
+.proj-tag {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0 0.4rem;
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  font-size: 0.66rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  vertical-align: 0.08em;
+  opacity: 0.7;
+  text-decoration: none !important;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.proj-tag.t-removal { color: #b91c1c; }  // crimson
+.proj-tag.t-repr    { color: #7c3aed; }  // violet
+.proj-tag.t-circuits   { color: #0891b2; }  // teal
+.proj-tag.t-decision   { color: #c2410c; }  // burnt orange
+
+// Muted on dark: enough hue to tell the projects apart, not enough to compete
+// with the talk titles. The pill is an aside, not a highlight.
+.dark {
+  .proj-tag.t-removal { color: #b5878a; }
+  .proj-tag.t-repr    { color: #9b90bd; }
+  .proj-tag.t-circuits   { color: #7a9fac; }
+  .proj-tag.t-decision   { color: #b8906c; }
+}
+
+// ---------------------------------------------------------------------------
+// Talk type annotations
+//
+// The talk kind (*contributed talk*, *invited talk*, *lightning talk*) is
+// metadata rather than content, so it is set smaller and muted. Awards are
+// written as ***bold italic*** and are deliberately excluded, so they keep
+// their full weight.
+// ---------------------------------------------------------------------------
+
+#talks li em:not(:has(strong)) {
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+// ---------------------------------------------------------------------------
+// Talk kind tags
+//
+// The kind of talk (invited / contributed / lightning) as a pill rather than
+// prose. Deliberately styled unlike `.proj-tag`: filled and neutral rather
+// than outlined and coloured, so the two tag systems stay tellable apart at a
+// glance -- kind on the left, project on the right.
+// ---------------------------------------------------------------------------
+
+.kind-tag {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0 0.38rem;
+  border-radius: 0.25rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+  text-transform: lowercase;
+}
+
+.kind-tag.k-invited     { background: #e0e7ff; color: #3730a3; }
+.kind-tag.k-selected    { background: #e7f0e4; color: #3f6212; }
+.kind-tag.k-panel       { background: #e5e7eb; color: #374151; }
+.kind-tag.k-lightning   { background: #fdf0dc; color: #92400e; }
+
+.dark {
+  .kind-tag.k-invited     { background: #312e81; color: #c7d2fe; }
+  .kind-tag.k-selected    { background: #2f4420; color: #d9f99d; }
+  .kind-tag.k-panel       { background: #374151; color: #e5e7eb; }
+  .kind-tag.k-lightning   { background: #4a2c0a; color: #fed7aa; }
+}
+
+// Awards: gold, and heavier than the other tags -- they are the one thing here
+// that is a distinction rather than a category.
+.award-tag {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.6;
+  white-space: nowrap;
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.dark .award-tag {
+  background: #78350f;
+  color: #fde68a;
+}
+
+// ---------------------------------------------------------------------------
+// Link tag
+//
+// An outbound link styled as a pill, for the rare entry with a recording. The
+// talk descriptions themselves are deliberately link-free, so this keeps the
+// affordance without putting a hyperlink back into the prose.
+// ---------------------------------------------------------------------------
+
+.link-tag {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0 0.4rem;
+  border: 1px solid currentColor;
+  border-radius: 0.25rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+  vertical-align: 0.08em;
+  text-decoration: none !important;
+  color: #475569;
+  opacity: 0.85;
+
+  &::before { content: "\25B6\FE0E"; margin-right: 0.25rem; font-size: 0.8em; }
+  &:hover { opacity: 1; }
+}
+
+.dark .link-tag { color: #cbd5e1; }
+
+// ---------------------------------------------------------------------------
+// Publication venue
+//
+// Rendered by the local `views/compact.html` override. Italic and slightly
+// dimmed so it reads as the journal line beneath the authors, not as a second
+// title.
+// ---------------------------------------------------------------------------
+
+.pub-venue {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+// ---------------------------------------------------------------------------
+// Subsection cards (Organizing / Teaching)
+//
+// Boxes each subsection so the two read as separate groups, matching the card
+// treatment used by the Education and Positions block above.
+// ---------------------------------------------------------------------------
+
+.subsection-card {
+  margin-bottom: 1.25rem;
+
+  h4 {
+    margin-top: 0;
+    margin-bottom: 0.85rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  ul:last-child li:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Talk cards
+//
+// Talks only. Organizing and Teaching keep the plain list treatment -- their
+// rows already sit inside a subsection card, and boxing each row inside a box
+// would nest two levels deep.
+// ---------------------------------------------------------------------------
+
+#talks li {
+  background: #2e313d;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0.4rem;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.4rem;
+
+  > strong:first-child {
+    flex: 0 0 5rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Note tag
+//
+// A factual qualifier about a venue (e.g. how selective it was). Shares the
+// badge shape with `.award-tag` so it sits comfortably in the row, but stays
+// neutral: the gold award badge should mean a conferred distinction and
+// nothing else.
+// ---------------------------------------------------------------------------
+
+.note-tag {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+  background: #3a3f4b;
+  color: #c3c9d4;
+}
+
+.dark .note-tag {
+  background: #3a3f4b;
+  color: #c3c9d4;
+}
+
+// ---------------------------------------------------------------------------
+// Project matrix
+//
+// A 2x2 of question (rows) against substrate (columns). The labels are the
+// content: they show that the brain work and the LLM work ask the same two
+// questions. Collapses to a single column on narrow screens, where each cell
+// carries its own labels instead.
+// ---------------------------------------------------------------------------
+
+.proj-matrix {
+  display: grid;
+  grid-template-columns: max-content 1fr 1fr;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.pm-colhead,
+.pm-rowhead {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  align-self: center;
+}
+
+.pm-colhead {
+  text-align: center;
+  padding-bottom: 0.1rem;
+}
+
+.pm-cell {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.45rem;
+  background: #2e313d;
+  text-decoration: none !important;
+  transition: border-color 0.15s ease, background 0.15s ease;
+
+  &:hover {
+    background: #343846;
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
+// Cells lay out as [ square figure | text ], so a wide panel does not force a
+// wide banner across the whole card.
+.pm-thumb {
+  flex: 0 0 150px;
+  height: 150px;
+  border-radius: 50%;      // round thumbnails
+  overflow: hidden;
+  background: transparent; // sit on the card colour, not a white disc
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   // whole figure inside the circle
+    display: block;
+  }
+}
+
+.pm-thumb-empty {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.pm-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.pm-title {
+  display: block;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+}
+
+// The whole cell is a link, so the theme's link colour would tint the body copy
+// too. The title keeps the accent; the summary reads as ordinary text.
+.pm-sum {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #f8f8f2;
+  opacity: 0.82;
+}
+
+.pm-cell:hover .pm-sum {
+  color: #f8f8f2;
+  opacity: 0.95;
+}
+
+// Per-cell labels: only needed once the grid collapses.
+.pm-side,
+.pm-row {
+  display: none;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+@media (max-width: 767.98px) {
+  .proj-matrix {
+    grid-template-columns: 1fr;
+  }
+
+  .pm-corner,
+  .pm-colhead,
+  .pm-rowhead {
+    display: none;
+  }
+
+  .pm-side,
+  .pm-row {
+    display: inline;
+  }
+
+  .pm-side::after {
+    content: " · ";
+  }
+
+  .pm-row {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Bio and project-page links
+//
+// The theme's link colour is the site accent, which makes a paragraph with six
+// links in it read as mostly links. In the bio and in project write-ups they
+// are supporting references, not the point, so they take the body colour with
+// a faint underline and only pick up the accent on hover.
+// ---------------------------------------------------------------------------
+
+#about .article-style a,
+.article-project .article-style a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  transition: color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    color: inherit;
+    border-bottom-color: currentColor;
+  }
+}
+
+// ---------------------------------------------------------------------------
+
+.reveal-mail {
+  cursor: pointer;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
+  white-space: nowrap;
+
+  &:hover {
+    border-bottom-color: currentColor;
+  }
+
+  &.is-revealed {
+    cursor: text;
+    border-bottom-style: solid;
+    user-select: all;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Project page figure
+//
+// The project's thumbnail, floated to the right of the text: same round
+// treatment as the homepage matrix, with the same per-project tweaks.
+// ---------------------------------------------------------------------------
+
+.project-figure {
+  float: right;
+  width: 225px;
+  height: 225px;
+  margin: 0.2rem 0 1rem 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: transparent;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 575.98px) {
+    float: none;
+    margin: 0 auto 1rem;
+  }
+}
+
+// Keep the auto-listed publications below the float, not wrapped around it.
+.project-related-pages {
+  clear: both;
+}
+
+.project-figure.pf-decision-circuits,
+.project-figure.pf-llm-knowledge-removal {
+  background: #fff;
+}
+
+.project-figure.pf-llm-knowledge-removal img {
+  transform: scale(1.15);
+}
+
+.project-figure.pf-sequential-decision-making {
+  background: #fff;
+
+  img {
+    transform: scale(0.84) translateY(11%);
+  }
+}
+
+// ---------------------------------------------------------------------------
+
+
+// ---------------------------------------------------------------------------
+// Navbar: accent-coloured tabs, and stays put while scrolling
+// ---------------------------------------------------------------------------
+
+#navbar-main {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+// `!important` because the theme sets these colours from several selectors
+// of higher specificity (.dark .navbar-light .navbar-nav .nav-link, ...).
+#navbar-main .main-menu-item .nav-link {
+  color: #f76497 !important;
+
+  &:hover,
+  &.active {
+    color: #ff8fb4 !important;
+  }
+}
+
+// A link that should keep the accent colour even where surrounding links are
+// muted (e.g. the main write-up on a project page). Use as
+// <a class="accent-link" href="...">...</a> in markdown.
+// Paper references on project pages keep the accent too: links into the
+// site's own publication pages, plus arXiv / DOI links to external papers.
+.article-style a.accent-link,
+.article-project .article-style a[href^="/publication/"],
+.article-project .article-style a[href*="arxiv.org"],
+.article-project .article-style a[href*="doi.org"],
+.article-project .article-style a[href^="/uploads/"] {
+  color: #f76497;
+  border-bottom: 0;   // colour alone marks these; the underline made them shout
+
+  &:hover {
+    color: #ff8fb4;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Project pages: justified text, matching the bio
+// ---------------------------------------------------------------------------
+
+.article-project .article-style {
+  text-align: justify;
+  hyphens: manual;   // auto-hyphenation was splitting words like "pool-ing"
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  // Sub-headings in the accent colour so they stand out from the body copy.
+  // Bold text at the start of a paragraph is treated the same way, since
+  // that is how run-in headers are written in the project pages.
+  h2, h3, h4, h5,
+  p > strong:first-child {
+    color: #f76497;
+  }
+}
+
+// Per-card thumbnail backgrounds: line-art figures need a light disc to read
+// against the dark card. Add a selector per project as needed.
+.pm-cell[href="/project/llm-knowledge-removal/"] .pm-thumb {
+  background: #fff;
+
+  // The diagram has wide transparent margins; enlarge it to fill the disc.
+  img {
+    transform: scale(1.15);
+  }
+}
+
+.pm-cell[href="/project/sequential-decision-making/"] .pm-thumb {
+  background: #fff;
+
+  // Shrink and nudge down so the maze at the top clears the circle's edge.
+  img {
+    transform: scale(0.84) translateY(11%);
+  }
+}
+
+// Inline full citations: a step smaller than body text.
+.cite-small {
+  font-size: 0.82em;
+  opacity: 0.85;
+}

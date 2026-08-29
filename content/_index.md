@@ -26,19 +26,28 @@ sections:
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
         - title: Senior Research Fellow
-          company: Sainsbury Wellcome Centre, UCL
+          company: Pivotal AI Safety Fellowship
+          advisors: with Stefan Heimersheim (Adecco/Google DeepMind)
+          company_url: 'https://www.pivotal-research.org/'
+        #   company_logo: org-gc
+          location: London, UK
+          date_start: '2026-07-01'
+          date_end: ''
+        #   description: |2-
+        - title: Senior Research Fellow
+          company: University College London
           advisors: with Tim Behrens and Thomas Mrsic-Flogel 
-          company_url: ''
+          company_url: 'https://www.sainsburywellcome.org/'
         #   company_logo: org-gc
           location: London, UK
           date_start: '2023-02-01'
-          date_end: ''
+          date_end: '2026-06-30'
         #   description: |2-
             
         - title: Ph.D. in Quantitative and Computational Neuroscience
           advisors: with Carlos Brody 
           company: Princeton University
-          company_url: ''
+          company_url: 'https://pni.princeton.edu/'
           company_logo: 
           location: NJ, USA
           date_start: '2017-09-01'
@@ -47,7 +56,7 @@ sections:
 
         - title: M.A. in Neuroscience
           company: Princeton University
-          company_url: ''
+          company_url: 'https://pni.princeton.edu/'
           company_logo: 
           location: NJ, USA
           date_start: '2015-09-01'
@@ -56,7 +65,7 @@ sections:
 
         - title: B.Tech. in Bioengineering
           company: Indian Institute of Technology Kanpur
-          company_url: ''
+          company_url: 'https://www.iitk.ac.in/'
           company_logo: 
           location: UP, India 
           date_start: '2011-07-01'
@@ -66,256 +75,112 @@ sections:
     design:
       columns: '2'
 
+  # PROJECTS - a 2x2 of substrate against question. The grid is drawn by
+  # layouts/partials/blocks/proj_matrix.html; each card's title, blurb and
+  # thumbnail come from the project page itself (its `title`, `summary` and
+  # featured image), so edit those in content/project/<slug>/index.md.
+  - block: proj_matrix
+    id: projects
+    content:
+      title: Projects
+    design:
+      columns: '1'
 
-
-
-
-
-
-#   - block: portfolio
-#     id: projects
-#     content:
-#       title: Projects
-#       filters:
-#         folders:
-#           - project
-#       # Default filter index (e.g. 0 corresponds to the first `filter_button` instance below).
-#       default_button_index: 0
-#       # Filter toolbar (optional).
-#       # Add or remove as many filters (`filter_button` instances) as you like.
-#       # To show all items, set `tag` to "*".
-#       # To filter by a specific tag, set `tag` to an existing tag name.
-#       # To remove the toolbar, delete the entire `filter_button` block.
-#       buttons:
-#         - name: All
-#           tag: '*'
-#         - name: Deep Learning
-#           tag: Deep Learning
-#         - name: Other
-#           tag: Demo
-#     design:
-#       # Choose how many columns the section has. Valid values: '1' or '2'.
-#       columns: '1'
-#       view: showcase
-#       # For Showcase view, flip alternate rows?
-#       flip_alt_rows: false
-
-
-#   - block: collection
-#     id: featured
-#     content:
-#       title: Featured Publications
-#       filters:`
-#         folders:
-#           - publication
-#         featured_only: true
-#     design:
-#       columns: '2'
-#       view: card
+  # PUBLICATIONS - four groups stacked under the #publications anchor.
+  # publication_type: '3' Preprint | '2' Journal article | '1' Conference paper
+  # (type '1' is relabelled "Conference abstract" in i18n/en.yaml, since these
+  #  are non-archival abstracts rather than archival conference papers.)
   - block: collection
     id: publications
     content:
-      title: Recent Publications
+      title: Blogposts
+      count: 0
       filters:
         folders:
-          - publication
-        exclude_featured: false
+          - post
     design:
       columns: '2'
       view: compact
 
-#   - block: collection
-#     id: talks
-#     content:
-# #       title: Recent & Upcoming Talks
-#         text: |-
-#         {{% callout note %}}
-#         Quickly discover relevant content by [filtering publications](./publication/).
-#         {{% /callout %}}
-#       disable_links: false
-#       filters:
-#         folders:
-#           - talks
-#     design:
-#       columns: '2'
-#       view: list
+  - block: collection
+    id: publications-peer-reviewed
+    content:
+      title: Peer-reviewed publications
+      count: 0
+      filters:
+        folders:
+          - publication
+        publication_type: '2'
+    design:
+      columns: '2'
+      view: compact
+
+  - block: collection
+    id: publications-preprints
+    content:
+      title: Preprints
+      count: 0
+      filters:
+        folders:
+          - publication
+        publication_type: '3'
+    design:
+      columns: '2'
+      view: compact
+
+  - block: markdown
+    id: teaching
+    content:
+      title: Organising & Teaching
+      subtitle:
+      text: |-
+        <div class="card card-body subsection-card">
+
+        #### Organising
+
+        * **2026** <span class="row-body">[Barcelona Advanced Modeling of Behavior](https://www.bambschool.org/) (BAMB!) summer school, Barcelona - *organiser*</span>
+        * **2026** <span class="row-body">[Replaying the future: neural mechanisms of generative replay](https://www.cosyne.org/workshops-program) - COSYNE 2026 workshop, *co-organiser* with Kristopher Jensen and Eleanor Spens</span>
+        * **2024–25** <span class="row-body">[Emerging Neuroscientists Seminar Series](https://www.sainsburywellcome.org/content/emerging-neuroscientists-seminar-series-enss) (ENSS), Sainsbury Wellcome Centre - *organiser*</span>
+
+        </div>
+
+        <div class="card card-body subsection-card">
+
+        #### Teaching
+
+        * **2024–25** <span class="row-body">[Barcelona Advanced Modeling of Behavior](https://www.bambschool.org/) (BAMB!) summer school, Barcelona - *teaching assistant*</span>
+        * **2023** <span class="row-body">[Neuromatch Academy](https://compneuro.neuromatch.io/), computational neuroscience track - *project mentor*</span>
+        * **2021** <span class="row-body">[Neuromatch Academy](https://compneuro.neuromatch.io/), computational neuroscience track - *project TA* for 11 student teams</span>
+        * **2017** <span class="row-body">Introduction to Neuroscience (NEU 175, undergraduate), Princeton University - *teaching assistant*</span>
+        * **2016** <span class="row-body">Introduction to Neuroscience (NEU 501A, graduate), Princeton University - *teaching assistant*</span>
+
+        </div>
+    design:
+        columns: '2'
 
   - block: markdown
     id: talks
     content:
-      title: Upcoming & Recent Talks
+      title: Talks
       subtitle: 
-      text: |- 
-        * **Nov 2023** &emsp;Leiden Institute for Brain and Cognition colloquium @ Leiden University
-        * **Oct 2023** &emsp; Society for Neuroeconomics conference 2023
-        ***Travel Award***
-        * **Sep 2023** &emsp; Gatsby Analytical Connectionism Workshop
-        * **Mar 2023** &emsp; [Computational and Systems Neuroscience (COSYNE)](https://www.youtube.com/live/h7kqB-oqeYI?si=mMnNwmWV82T8bIUC&t=3149) conference
-        * **June 2022** &ensp; Sainsbury Wellcome Centre, University College London
-        * **June 2022** &ensp; [Reinforcement Learning and Decision-making conference](https://brown.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=947eba80-da6a-45dd-b9d2-aebd00d55451) ***Best Paper Award***
-        * **May 2022** &emsp; Princeton Neuroscience Institute annual retreat
-        * **Apr 2022** &emsp; Center for Neural Science, New York University
-        * **Mar 2022** &emsp; Computational Cognitive Neuroscience seminar @ UMC Hamburg-Eppendorf
-        * **Mar 2022** &emsp;Janelia Research Campus
-        * **Oct 2021** &emsp; Experimental Psychology seminar @ Bolivian Catholic University
+      text: |-
+        * **Aug 2026** <span class="row-body">Pivotal Spotlight, London Initiative for Safe AI (LISA) <span class="tag-row"><span class="kind-tag k-selected">selected</span> <a class="proj-tag t-repr" href="/project/llm-representation-structure/">representation structure</a></span></span>
+        * **Aug 2026** <span class="row-body">Pivotal Lightning talk, UK AISI <span class="tag-row"><span class="kind-tag k-selected">selected</span> <a class="proj-tag t-repr" href="/project/llm-representation-structure/">representation structure</a></span></span>
+        * **May 2026** <span class="row-body">Symposium on Biology of Decision Making (SBDM), Paris <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-decision" href="/project/sequential-decision-making/">failure modes</a></span></span>
+        * **Mar 2026** <span class="row-body">IDIBAPS - Institut d’Investigacions Biomèdiques August Pi i Sunyer, Barcelona <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
+        * **Dec 2025** <span class="row-body">AI Research Afternoon, Faculty of Life Sciences, University College London <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
+        * **Nov 2025** <span class="row-body">Minisymposium, Society for Neuroscience annual meeting <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
+        * **Nov 2023** <span class="row-body">Colloquium, Leiden Institute for Brain and Cognition, Leiden University <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-decision" href="/project/sequential-decision-making/">failure modes</a></span></span>
+        * **Oct 2023** <span class="row-body">Society for Neuroeconomics annual meeting <span class="tag-row"><span class="kind-tag k-selected">selected</span> <span class="award-tag">Travel Award</span> <a class="proj-tag t-decision" href="/project/sequential-decision-making/">failure modes</a></span></span>
+        * **Oct 2023** <span class="row-body">Brain Stories Live, Episode 18: Neuro AI - public panel at the Bloomsbury Theatre, with Rick Adams and Benedetto De Martino <span class="tag-row"><span class="kind-tag k-panel">panel</span> <a class="link-tag" href="https://open.spotify.com/episode/4NAcwrubS8vw8IL1zqs7cf" target="_blank" rel="noopener">listen</a></span></span>
+        * **Sep 2023** <span class="row-body">Analytical Connectionism Workshop, Gatsby Computational Neuroscience Unit <span class="tag-row"><span class="kind-tag k-selected">selected</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
+        * **Mar 2023** <span class="row-body">Computational and Systems Neuroscience (COSYNE) conference <span class="tag-row"><span class="kind-tag k-selected">selected</span> <span class="note-tag">top 3% of abstracts</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
+        * **June 2022** <span class="row-body">Reinforcement Learning and Decision Making (RLDM) conference <span class="tag-row"><span class="kind-tag k-selected">selected</span> <span class="award-tag">Best Paper Award</span> <a class="proj-tag t-decision" href="/project/sequential-decision-making/">failure modes</a></span></span>
+        * **May 2022** <span class="row-body">Annual retreat, Princeton Neuroscience Institute <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
+        * **Apr 2022** <span class="row-body">Center for Neural Science, New York University <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
+        * **Mar 2022** <span class="row-body">Computational Cognitive Neuroscience seminar, UMC Hamburg-Eppendorf <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-decision" href="/project/sequential-decision-making/">failure modes</a></span></span>
+        * **Mar 2022** <span class="row-body">HHMI Janelia Research Campus <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
+        * **Oct 2021** <span class="row-body">Experimental Psychology seminar, Bolivian Catholic University <span class="tag-row"><span class="kind-tag k-invited">invited</span> <a class="proj-tag t-circuits" href="/project/decision-circuits/">decision circuits</a></span></span>
     design:
         columns: '2'
-
-#   - block: markdown
-#     id: section-2
-#     content:
-#       title: Section 2
-#       subtitle: A subtitle
-#       text: Add your Section 2 content here...
-
-
-
-
-
-
-
-#   - block: features
-#     content:
-#       title: Skills
-#       items:
-#         - name: R
-#           description: 90%
-#           icon: r-project
-#           icon_pack: fab
-#         - name: Statistics
-#           description: 100%
-#           icon: chart-line
-#           icon_pack: fas
-#         - name: Photography
-#           description: 10%
-#           icon: camera-retro
-#           icon_pack: fas
-    #   - block: tag_cloud
-    #     content:
-    #       title: Popular Topics
-    #     design:
-    #       columns: '2'
-#   - block: contact
-#     id: contact
-#     content:
-#       title: Contact
-#       subtitle:
-#       text: |-
-#         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi diam, venenatis ut magna et, vehicula efficitur enim.
-#       # Contact (add or remove contact options as necessary)
-#       email: test@example.org
-#       phone: 888 888 88 88
-#       appointment_url: 'https://calendly.com'
-#       address:
-#         street: 450 Serra Mall
-#         city: Stanford
-#         region: CA
-#         postcode: '94305'
-#         country: United States
-#         country_code: US
-#       directions: Enter Building 1 and take the stairs to Office 200 on Floor 2
-#       office_hours:
-#         - 'Monday 10:00 to 13:00'
-#         - 'Wednesday 09:00 to 10:00'
-#       contact_links:
-#         - icon: twitter
-#           icon_pack: fab
-#           name: DM Me
-#           link: 'https://twitter.com/Twitter'
-#         - icon: skype
-#           icon_pack: fab
-#           name: Skype Me
-#           link: 'skype:echo123?call'
-#         - icon: video
-#           icon_pack: fas
-#           name: Zoom Me
-#           link: 'https://zoom.com'
-#       # Automatically link email and phone or display as text?
-#       autolink: true
-#       # Email form provider
-#       form:
-#         provider: netlify
-#         formspree:
-#           id:
-#         netlify:
-#           # Enable CAPTCHA challenge to reduce spam?
-#           captcha: false
-    # design:
-    #   columns: '2'
-#   - block: collection
-#     id: posts
-#     content:
-#       title: Recent Posts
-#       subtitle: ''
-#       text: ''
-#       # Choose how many pages you would like to display (0 = all pages)
-#       count: 5
-#       # Filter on criteria
-#       filters:
-#         folders:
-#           - post
-#         author: ""
-#         category: ""
-#         tag: ""
-#         exclude_featured: false
-#         exclude_future: false
-#         exclude_past: false
-#         publication_type: ""
-#       # Choose how many pages you would like to offset by
-#       offset: 0
-#       # Page order: descending (desc) or ascending (asc) date.
-#       order: desc
-#     design:
-#       # Choose a layout view
-#       view: compact
-#       columns: '2'
-#   - block: markdown
-#     content:
-#       title: Recent talks
-#       subtitle: ''
-#       text: |-
-#         {{< gallery album="demo" >}}
-#     design:
-#       columns: '1'
-
-
-#   - block: accomplishments
-#     content:
-#       # Note: `&shy;` is used to add a 'soft' hyphen in a long heading.
-#       title: 'Accomplish&shy;ments'
-#       subtitle:
-#       # Date format: https://wowchemy.com/docs/customization/#date-format
-#       date_format: Jan 2006
-#       # Accomplishments.
-#       #   Add/remove as many `item` blocks below as you like.
-#       #   `title`, `organization`, and `date_start` are the required parameters.
-#       #   Leave other parameters empty if not required.
-#       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
-#       items:
-#         - certificate_url: https://www.coursera.org
-#           date_end: ''
-#           date_start: '2021-01-25'
-#           description: ''
-#           organization: Coursera
-#           organization_url: https://www.coursera.org
-#           title: Neural Networks and Deep Learning
-#           url: ''
-#         - certificate_url: https://www.edx.org
-#           date_end: ''
-#           date_start: '2021-01-01'
-#           description: Formulated informed blockchain models, hypotheses, and use cases.
-#           organization: edX
-#           organization_url: https://www.edx.org
-#           title: Blockchain Fundamentals
-#           url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
-#         - certificate_url: https://www.datacamp.com
-#           date_end: '2020-12-21'
-#           date_start: '2020-07-01'
-#           description: ''
-#           organization: DataCamp
-#           organization_url: https://www.datacamp.com
-#           title: 'Object-Oriented Programming in R'
-#           url: ''
-#     design:
-#       columns: '2'
 ---

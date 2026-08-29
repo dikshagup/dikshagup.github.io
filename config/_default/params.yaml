@@ -6,7 +6,10 @@
 # Appearance
 
 appearance:
-  theme_day: my_theme_day
+  # Dark only. Leaving `theme_day` empty disables the light variation entirely:
+  # the theme gates both the day/night switcher and the prefers-color-scheme
+  # logic on *both* values being set.
+  theme_day: ''
   theme_night: dark
   font: minimal
   font_size: m
@@ -18,8 +21,8 @@ marketing:
     site_type: Person
     local_business_type: ''
     org_name: ''
-    description: 'A highly-customizable Hugo academic resume theme powered by Wowchemy website builder.'
-    twitter: 'wowchemy'
+    description: 'Diksha Gupta is a neuroscientist studying how intelligent behavior emerges from networks of neurons, combining computational and experimental approaches.'
+    twitter: 'dikshagup'
   analytics:
     google_analytics: ''
     baidu_tongji: ''
@@ -37,7 +40,7 @@ header:
     align: l
     show_logo: false
     show_language: false
-    show_day_night: true
+    show_day_night: false
     show_search: true
     highlight_active_link: true
 
@@ -70,7 +73,7 @@ features:
   privacy_pack:
     enable: false
   repository:
-    url: 'https://github.com/<username>/<repository>'
+    url: 'https://github.com/dikshagup/dikshagup.github.io'
     content_dir: content
     branch: main
   avatar:

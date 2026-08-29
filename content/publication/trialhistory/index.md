@@ -1,13 +1,13 @@
 ---
-title: "Trial-history biases in evidence accumulation can give rise to apparent lapses"
+title: "Trial-history biases in evidence accumulation can give rise to apparent lapses in decision-making"
 authors: 
 - admin 
 - Brian DePasquale
 - Charles Kopec
 - Carlos Brody
 
-date: "2023-02-07T00:00:00Z"
-doi: "10.1101/2023.01.18.524599"
+date: "2024-01-01T00:00:00Z"
+doi: "10.1038/s41467-024-44880-5"
 
 # Schedule page publish date (NOT publication's date).
 publishDate: 
@@ -16,11 +16,11 @@ publishDate:
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
 # 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
 # 7 = Thesis; 8 = Patent
-publication_types: ["3"]
+publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
-publication: "bioRXiv"
-publication_short: ""
+publication: "Nature Communications"
+publication_short: "Nat. Commun."
 
 abstract: Trial history biases and lapses are two of the most common suboptimalities observed during perceptual decision-making. These suboptimalities are routinely assumed to arise from distinct processes. However, several hints in the literature suggest that they covary in their prevalence and that their proposed neural substrates overlap – what could underlie these links? Here we demonstrate that history biases and apparent lapses can both arise from a common cognitive process that is normative under misbeliefs about non-stationarity in the world. This corresponds to an accumulation- to-bound model with history-dependent updates to the initial state of the accumulator. We test our model’s predictions about the relative prevalence of history biases and lapses, and show that they are robustly borne out in two distinct rat decision-making datasets, including data from a novel reaction time task. Our model improves the ability to precisely predict decision-making dynamics within and across trials, by positing a process through which agents can generate quasi-stochastic choices.
 
@@ -37,7 +37,7 @@ links:
 # - name: Custom Link
 #   url: https://doi.org/10.1101/2023.01.18.524599
 url_pdf: https://www.biorxiv.org/content/10.1101/2023.01.18.524599v3.full.pdf
-url_code: ''
+url_code: "https://github.com/Brody-Lab/trialhistory_lapses_EA"
 url_dataset: ''
 url_poster: ''
 url_project: ''
@@ -58,8 +58,7 @@ image:
 #   E.g. `internal-project` references `content/project/internal-project/index.md`.
 #   Otherwise, set `projects: []`.
 projects:
-- internal-project
-
+  - sequential-decision-making
 # Slides (optional).
 #   Associate this publication with Markdown slides.
 #   Simply enter your slide deck's filename without extension.

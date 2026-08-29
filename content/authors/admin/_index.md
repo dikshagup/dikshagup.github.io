@@ -1,10 +1,14 @@
 ---
-# Display name
-title: diksha gupta
+# Display name (the heading at the top of the homepage)
+title: Diksha Gupta, PhD
+
+# Name used wherever the author appears in a list, e.g. publication author
+# lists -- without the post-nominal, which would read badly between commas.
+linkTitle: Diksha Gupta
 
 # Full name (for SEO)
-first_name: diksha
-last_name: gupta
+first_name: Diksha
+last_name: Gupta
 
 # Status emoji
 status:
@@ -18,8 +22,8 @@ role: Senior Research Fellow
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: Sainsbury Wellcome Centre, UCL
-    url: https://www.sainsburywellcome.org/web/
+  - name: Pivotal Research 
+    url: https://www.pivotal-research.org/
 
 # Short bio (displayed in user profile at end of posts)
 bio: 
@@ -54,12 +58,6 @@ social:
   - icon: google-scholar #graduation-cap # Alternatively, use `google-scholar` icon from `ai` icon pack
     icon_pack: ai #fas
     link: https://scholar.google.co.in/citations?user=IT-v1rUAAAAJ&hl=en&oi=ao
-  - icon: twitter
-    icon_pack: fab
-    link: https://twitter.com/dikshagup
-    label: Twitter
-    display:
-      header: false
   - icon: github
     icon_pack: fab
     link: https://github.com/dikshagup
@@ -80,11 +78,12 @@ email: ''
 highlight_name: true
 ---
 
-hello, I'm diksha gupta!
+Hi, I am Diksha :)
 
-I am a researcher interested in understanding how intelligent behavior emerges from the coordinated activity of networks of neurons. My research aims at uncovering the representations, architectures, and dynamics that are crucial for fundamental cognitive computations, using a combination of computational and experimental approaches.
+I study how neural networks solve complex cognitive tasks, and diagnose when and how they fail. My interests lie at the intersection of LLM training dynamics, alignment, and interpretability.
 
-I am currently a senior research fellow at the [Sainsbury Wellcome Centre](https://www.sainsburywellcome.org/web/) in University College London with the [Behrens](https://www.sainsburywellcome.org/web/groups/behrens-lab) and [Mrsic-Flogel](https://www.sainsburywellcome.org/web/groups/mrsic-flogel-lab) labs. Here, I am studying the principles that allow brains to draw upon past bits of knowledge and compose them together to solve novel, challenging tasks (also called compositional generalization). Previously, during my PhD with [Carlos Brody](http://brodylab.org/) at Princeton University, I studied how recurrently connected networks in the brain accumulate information from noisy evidence, in order to make well-informed decisions. 
+I am currently a senior research fellow at [Pivotal](https://www.pivotal-research.org/), working with [Stefan Heimersheim](https://heimersheim.eu/) on the continuity of LLM activation manifolds and what that implies for manifold-aware steering and probing. Previously, I worked on red-teaming unlearning methods for open-weight safety.
 
-In my research, I like to move between statistical, dynamical, and neural network models to scrutinize both behavior and underlying neural activity, adopting a normative lens whenever possible. For empirical data, I primarily rely on neural recordings and causal experiments in rodents while they play carefully crafted structured games. 
+Before that, I was a senior research fellow at the [Sainsbury Wellcome Centre](https://www.sainsburywellcome.org/web/) at University College London, with the [Behrens](https://www.sainsburywellcome.org/web/groups/behrens-lab) and [Mrsic-Flogel](https://www.sainsburywellcome.org/web/groups/mrsic-flogel-lab) labs, studying compositional representations and their learning algorithms in artificial and biological neural networks. During my PhD with [Carlos Brody](http://brodylab.org/) at Princeton University, I developed ablation-aware methods to train RNNs on cognitive tasks to improve capability attribution, and better models to track systematic biases in decision-making and predict previously unpredictable failures, working from neural recordings and causal experiments in rodents playing carefully crafted structured games.
 {style="text-align: justify;"}
+

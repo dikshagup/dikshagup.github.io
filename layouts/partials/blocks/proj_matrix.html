@@ -1,0 +1,54 @@
+{{/* Project matrix block: a 2x2 of substrate (rows) against question (columns).
+
+     Titles, blurbs and thumbnails come from the project pages themselves
+     (`title`, `summary`, and the featured image), so editing a project page
+     updates the homepage card. Only the grid shape is fixed here. */}}
+
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+
+{{ $cols := slice "Structure &amp; attribution" "Failure modes" }}
+{{ $rows := slice
+  (dict "label" "LLMs"   "slugs" (slice "llm-representation-structure" "llm-knowledge-removal"))
+  (dict "label" "Brains" "slugs" (slice "decision-circuits" "sequential-decision-making"))
+}}
+
+<div class="col-12">
+<div class="proj-matrix">
+  <div class="pm-corner"></div>
+  {{ range $cols }}<div class="pm-colhead">{{ . | safeHTML }}</div>{{ end }}
+
+  {{ range $row := $rows }}
+    <div class="pm-rowhead">{{ $row.label }}</div>
+    {{ range $i, $slug := $row.slugs }}
+      {{ $col := index $cols $i }}
+      {{ with site.GetPage (printf "/project/%s" $slug) }}
+        {{ $fig := partial "functions/get_featured_image.html" . }}
+        <a class="pm-cell" href="{{ .RelPermalink }}">
+          {{ with $fig }}
+            {{ $img := .Fit "440x440 webp" }}
+            <span class="pm-thumb"><img src="{{ $img.RelPermalink }}" alt="" loading="lazy"></span>
+          {{ else }}
+            <span class="pm-thumb pm-thumb-empty"></span>
+          {{ end }}
+          <span class="pm-body">
+            <span class="pm-side">{{ $row.label }}</span><span class="pm-row">{{ $col | safeHTML }}</span>
+            <span class="pm-title">{{ .Title }}</span>
+            {{/* Blurb: the page's `summary` if set, otherwise its first paragraph. */}}
+            {{ $blurb := .Params.summary | default "" }}
+            {{ if not $blurb }}
+              {{ with index (findRE "<p>(.|\n)*?</p>" .Content 1) 0 }}
+                {{/* first paragraph, as plain text, capped so cards stay card-sized */}}
+                {{ $blurb = . | plainify | truncate 230 }}
+              {{ end }}
+            {{ end }}
+            <span class="pm-sum">{{ $blurb | safeHTML }}</span>
+          </span>
+        </a>
+      {{ else }}
+        {{ errorf "proj_matrix: no project page at content/project/%s" $slug }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</div>
+</div>
