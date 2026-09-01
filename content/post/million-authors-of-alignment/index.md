@@ -18,6 +18,10 @@ venue: LessWrong
 # The venue line above carries the year; no separate date line.
 show_date: false
 
+# The body is empty - this links out to LessWrong - so a reading-time
+# estimate is meaningless here.
+reading_time: false
+
 # Clicking the post opens the original on LessWrong.
 external_link: 'https://www.lesswrong.com/posts/cKosepBZe4zMKDFkp/a-million-authors-of-alignment'
 
